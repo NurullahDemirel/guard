@@ -14,5 +14,4 @@
                 <a href="{{route('user.login')}}" class="btn btn-danger ml-4">As User</a>
             </div>
     </body>
-
 </html>

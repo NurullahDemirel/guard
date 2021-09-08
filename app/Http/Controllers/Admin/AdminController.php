@@ -8,21 +8,12 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\Admin\AdminFormRequest;
 
 class AdminController extends Controller
 {
-    public function create(Request $request){
-        $request->validate([
-            'name'=>'required|min:3',
-            'email'=>'required|email|unique:users',
-            'password'=>'required|min:6|max:15',
-            'phone'=>'required',
-            'cpassword'=>'required|same:password',
-        ],
-            [
-                'cpassword.same'=>'eşleşmiyor'
-            ]);
-
+    public function create(AdminFormRequest $request){
+        $request->validated();
         $password=Hash::make($request->password);
         $new=[
             'name'=>$request->name,
